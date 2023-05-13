@@ -9,8 +9,10 @@ public class RowGameApp
         RowGameController game = new RowGameController();
         game.gameView.gui.setVisible(true);
         final String COMPUTER = "computer";
-        if (args[0].compareTo(COMPUTER) == 0) {
-            game.gameMode.setComputer();
+        if (args.length > 0) {
+            if (args[0].compareTo(COMPUTER) == 0) {
+                game.gameMode.setComputer();
+            }
         }
     }
 }
