@@ -38,7 +38,7 @@ public class RowGameController {
      *
      * @param blockIndex The index of the block to be moved to by the current player
      */
-    public void move(BlockIndex blockIndex) {
+    protected void manipulateAfterMove(BlockIndex blockIndex) {
 	// Perform input validation
 	if ((blockIndex != null) &&
 	    (gameModel.blocksData[blockIndex.getRow()][blockIndex.getColumn()].getIsLegalMove() == false)) {
@@ -355,6 +355,19 @@ public class RowGameController {
 	// The Controller then updates the View.
 	gameView.update(gameModel);
     }
+
+	/**
+     * Moves the current player into the block at the given block index.
+     *
+     * @param blockIndex The index of the block to be moved to by the current player
+     */
+    public void move(BlockIndex blockIndex) {
+		// Perform input validation
+		if ((blockIndex != null) &&
+			(gameModel.blocksData[blockIndex.getRow()][blockIndex.getColumn()].getIsLegalMove() == false)) {
+			throw new UnsupportedOperationException("Moving to row " + blockIndex.getRow() + " and column " + blockIndex.getColumn() + " is an illegal move.");
+		}
+	}
 
     /**
      * Performs undo for the last move taken if the game is not
