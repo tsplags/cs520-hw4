@@ -19,6 +19,8 @@
 
 1. Run `ant clean` to clean the project (i.e., delete all generated files).
 
-Supported features:
+### Supported features:
 
 * Undo functionality - If the game has not just started or finished, the users are allowed to undo their previous moves. The user should click on the Undo button to undo the immediately previous move.
+
+* Computer Opponent - Before starting play, the user is allowed to choose to play against a human player (original functionality) or a computer player. The computer player's only functionality is to randomly choose a new square to play.
