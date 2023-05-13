@@ -42,6 +42,8 @@ public class RowGameGUI implements View {
         options.add(reset);
 	UndoViewController undoViewController = new UndoViewController(options, controller);
 	addView(undoViewController);
+    PlayerSelectionViewController playerSelectionViewController = new PlayerSelectionViewController(options, controller);
+	addView(playerSelectionViewController);
         JPanel messages = new JPanel(new FlowLayout());
         messages.setBackground(Color.white);
 
