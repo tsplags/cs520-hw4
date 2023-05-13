@@ -372,7 +372,7 @@ public class RowGameController {
 
 	// Update the view
 	gameView.update(gameModel);
-    }    
+    }
 
     /**
      * Ends the game disallowing further player turns.
