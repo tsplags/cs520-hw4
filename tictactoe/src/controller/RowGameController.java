@@ -11,10 +11,12 @@ import model.BlockIndex;
 import model.RowGameModel;
 import model.Player;
 import view.RowGameGUI;
+import model.RowGameMode;
 
 public class RowGameController {
     public RowGameModel gameModel;
     public RowGameGUI gameView;
+	public RowGameMode gameMode;
 
     /**
      * Creates a new game initializing the GUI.
@@ -22,6 +24,7 @@ public class RowGameController {
     public RowGameController() {
 	gameModel = new RowGameModel();
 	gameView = new RowGameGUI(this);
+	gameMode = new RowGameMode();
 
         for(int row = 0; row<3; row++) {
             for(int column = 0; column<3 ;column++) {
@@ -362,10 +365,19 @@ public class RowGameController {
      * @param blockIndex The index of the block to be moved to by the current player
      */
     public void move(BlockIndex blockIndex) {
-		// Perform input validation
-		if ((blockIndex != null) &&
-			(gameModel.blocksData[blockIndex.getRow()][blockIndex.getColumn()].getIsLegalMove() == false)) {
-			throw new UnsupportedOperationException("Moving to row " + blockIndex.getRow() + " and column " + blockIndex.getColumn() + " is an illegal move.");
+		final String COMPUTER = "computer";
+		int mode = 0;
+		ComputerMoveController newMoveC = new ComputerMoveController();
+		HumanMoveController newMoveH = new HumanMoveController();
+		// Check to see if playing a computer player or human player.
+		if (gameMode.getGameMode().compareTo(COMPUTER) == 0) {
+			mode = 1;
+		}
+		if (mode == 1) {
+			newMoveC.move(blockIndex);
+		}
+		else {
+			newMoveH.move(blockIndex);
 		}
 	}
 
