@@ -366,18 +366,14 @@ public class RowGameController {
      */
     public void move(BlockIndex blockIndex) {
 		final String COMPUTER = "computer";
-		int mode = 0;
-		ComputerMoveController newMoveC = new ComputerMoveController();
-		HumanMoveController newMoveH = new HumanMoveController();
 		// Check to see if playing a computer player or human player.
 		if (gameMode.getGameMode().compareTo(COMPUTER) == 0) {
-			mode = 1;
-		}
-		if (mode == 1) {
-			newMoveC.move(blockIndex);
+			MoveStrategy computerStrategy = new ComputerMove();
+			computerStrategy.move(this, blockIndex);
 		}
 		else {
-			newMoveH.move(blockIndex);
+			MoveStrategy humanStrategy = new HumanMove();
+			humanStrategy.move(this, blockIndex);
 		}
 	}
 
