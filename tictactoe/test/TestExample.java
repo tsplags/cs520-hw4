@@ -170,17 +170,19 @@ public class TestExample {
 	@Test
     public void testComputerPlayer() {
 	// Perform the setup and check the pre-conditions
-	game.gameMode.setComputer();
+	RowGameController newGame = new RowGameController();
+	this.checkInitialConfiguration();
 	BlockIndex blockIndex = new BlockIndex(0, 0);
-	assertEquals(game.gameMode.getGameMode(), "computer");
 	testLegalMoveHelper(blockIndex);
+	newGame.gameMode.setComputer();
+	assertEquals(newGame.gameMode.getGameMode(), "computer");
 	
-	// Call the unit under test: Execute undo
-	game.move(blockIndex);
+	// Call the unit under test: Execute move with game mode set to computer
+	newGame.move(blockIndex);
 
 	// Check the post-conditions
-	assertEquals(game.gameModel.movesLeft, 7);
-	assertEquals(game.gameModel.getPlayer().getID(), 1);
-	assertEquals(game.gameModel.blocksData[blockIndex.getRow()][blockIndex.getColumn()].getIsLegalMove(), false);
+	assertEquals(newGame.gameModel.movesLeft, 7);
+	assertEquals(newGame.gameModel.getPlayer().getID(), 1);
+	assertEquals(newGame.gameModel.blocksData[blockIndex.getRow()][blockIndex.getColumn()].getIsLegalMove(), false);
     }
 }
