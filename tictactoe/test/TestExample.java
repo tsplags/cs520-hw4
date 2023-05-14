@@ -166,4 +166,21 @@ public class TestExample {
 	// Check the post-conditions
 	this.checkInitialConfiguration();
     }
+
+	@Test
+    public void testComputerPlayer() {
+	// Perform the setup and check the pre-conditions
+	game.gameMode.setComputer();
+	BlockIndex blockIndex = new BlockIndex(0, 0);
+	assertEquals(game.gameMode.getGameMode(), "computer");
+	testLegalMoveHelper(blockIndex);
+	
+	// Call the unit under test: Execute undo
+	game.move(blockIndex);
+
+	// Check the post-conditions
+	assertEquals(game.gameModel.movesLeft, 7);
+	assertEquals(game.gameModel.getPlayer().getID(), 1);
+	assertEquals(game.gameModel.blocksData[blockIndex.getRow()][blockIndex.getColumn()].getIsLegalMove(), false);
+    }
 }
